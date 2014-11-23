@@ -1,3 +1,4 @@
+'use strict'
 
 ###*
  # @ngdoc function
@@ -7,26 +8,19 @@
  # Controller of the angfbApp
 ###
 app.controller 'PostsCtrl', ($scope, Post) ->
-  $scope.posts = Post.get()
+  $scope.helpers = app.helpers
+  $scope.invisible = false
+  $scope.posts = Post.all
   $scope.post =
-    url: 'http://'
+    url: 'http://',
     title: ''
 
-  $scope.submitPost = ->
-    Post.save $scope.post, (ref) ->
-      $scope.posts[ref.name] = $scope.post
-      $scope.post =
-        url: 'http://'
-        title: ''
-      return
-    return
+  $scope.deletePost = (post) ->
+    Post.delete post
 
-  $scope.deletePost = (postId) ->
-    Post.delete(
-      id: postId, ->
-        delete $scope.posts[postId]
-        return
-    )
-    return
+  $scope.printedPosts = $scope.helpers.output
+
+  $scope.toggle = ->
+    $scope.invisible = not $scope.invisible
 
   return
