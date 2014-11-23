@@ -24,6 +24,7 @@ root.app = angular
     'ngRoute',
     'ngSanitize',
     'ngTouch'
+    'firebase'
   ])
   .config ($routeProvider) ->
     $routeProvider

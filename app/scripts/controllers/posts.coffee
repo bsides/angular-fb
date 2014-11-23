@@ -6,21 +6,27 @@
  # # PostsCtrl
  # Controller of the angfbApp
 ###
-app.controller 'PostsCtrl', ($scope) ->
-  $scope.posts = []
+app.controller 'PostsCtrl', ($scope, Post) ->
+  $scope.posts = Post.get()
   $scope.post =
     url: 'http://'
     title: ''
 
   $scope.submitPost = ->
-    $scope.posts.push($scope.post)
-    $scope.post =
-      url: 'http://'
-      title: ''
+    Post.save $scope.post, (ref) ->
+      $scope.posts[ref.name] = $scope.post
+      $scope.post =
+        url: 'http://'
+        title: ''
+      return
     return
 
-  $scope.deletePost = (index) ->
-    $scope.posts.splice(index, 1)
+  $scope.deletePost = (postId) ->
+    Post.delete(
+      id: postId, ->
+        delete $scope.posts[postId]
+        return
+    )
     return
 
   return
