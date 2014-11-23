@@ -1,14 +1,12 @@
-'use strict'
 
 ###*
  # @ngdoc function
- # @name angfbApp.controller:MainCtrl
+ # @name angfbApp.controller:PostsCtrl
  # @description
- # # MainCtrl
+ # # PostsCtrl
  # Controller of the angfbApp
 ###
-angular.module('angfbApp')
-  .controller 'MainCtrl', ($scope) ->
+app.controller 'PostsCtrl', ($scope) ->
     $scope.awesomeThings = [
       'HTML5 Boilerplate'
       'AngularJS'

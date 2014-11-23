@@ -1,3 +1,6 @@
+###* global app:true ###
+###* exported app ###
+
 'use strict'
 
 ###*
@@ -8,7 +11,10 @@
  #
  # Main module of the application.
 ###
-angular
+
+root = exports ? this
+
+root.app = angular
   .module('angfbApp', [
     'ngAnimate',
     'ngAria',
@@ -22,11 +28,8 @@ angular
   .config ($routeProvider) ->
     $routeProvider
       .when '/',
-        templateUrl: 'views/main.html'
-        controller: 'MainCtrl'
-      .when '/about',
-        templateUrl: 'views/about.html'
-        controller: 'AboutCtrl'
+        templateUrl: 'views/posts.html'
+        controller: 'PostsCtrl'
       .otherwise
         redirectTo: '/'
 
