@@ -32,6 +32,18 @@ root.app = angular
       .when '/',
         templateUrl: 'views/posts.html'
         controller: 'PostsCtrl'
+      .when '/register',
+        templateUrl: 'views/register.html'
+        controller: 'AuthCtrl'
+        resolve:
+          user: (Auth) ->
+            Auth.signedIn()
+      .when '/login',
+        templateUrl: 'views/login.html'
+        controller: 'AuthCtrl'
+        resolve:
+          user: (Auth) ->
+            Auth.signedIn()
       .otherwise
         redirectTo: '/'
     return

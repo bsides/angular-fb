@@ -1,6 +1,8 @@
 'use strict'
 
-app.controller 'NavCtrl', ($scope, $location, Post) ->
+app.controller 'NavCtrl', ($scope, $location, Auth, Post) ->
+  $scope.signedIn = Auth.signedIn
+  $scope.logout = Auth.logout
   $scope.post =
     url: 'http://'
     title: ''
